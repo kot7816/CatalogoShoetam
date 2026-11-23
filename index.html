@@ -61,7 +61,9 @@
   .btn-outline{background:#fff;border:1.5px solid var(--borde);color:var(--carbon)}
   .btn-wa{background:var(--turquesa);color:var(--carbon);width:100%;min-height:52px;font-size:17px}
   .btn-sm{min-height:38px;padding:6px 12px;font-size:13px}
-  .btn-fav-badge{position:relative;padding-right:14px}
+  .btn-cart-badge{position:relative;padding-right:14px}
+  .btn-cart-badge.pop .badge-cnt{animation:pop .4s ease}
+  @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.5)}100%{transform:scale(1)}}
   .badge-cnt{position:absolute;top:-4px;right:-2px;background:var(--rojo);color:#fff;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:999px;display:flex;align-items:center;justify-content:center;padding:0 4px}
   .hide-mobile{display:none}
   .show-mobile{display:inline}
@@ -118,9 +120,12 @@
   .badge.oferta{background:var(--rojo)}
   .badge.nuevo{background:var(--turquesa);color:var(--carbon)}
   .badge.vendido{background:#3182ce}
-  .btn-card-fav{position:absolute;top:8px;right:8px;z-index:3;width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.15)}
-  .btn-card-fav svg{width:18px;height:18px;fill:#cbd5e0}
-  .btn-card-fav[aria-pressed="true"] svg{fill:var(--rojo)}
+  .btn-card-cart{margin:0 12px 12px;min-height:40px;border-radius:10px;border:none;background:var(--turquesa);color:var(--carbon);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;gap:4px;padding:6px 8px;cursor:pointer}
+  .btn-card-cart:hover{background:var(--turquesa-osc)}
+  .btn-card-cart .en{display:none}
+  .btn-card-cart[aria-pressed="true"]{background:#e6f6f5;color:#1d7f79;box-shadow:inset 0 0 0 1.5px #1d7f79}
+  .btn-card-cart[aria-pressed="true"] .en{display:inline}
+  .btn-card-cart[aria-pressed="true"] .agregar{display:none}
   .card-body{padding:10px 12px 14px;display:grid;gap:3px}
   .pills{display:flex;gap:4px;flex-wrap:wrap}
   .pill{display:inline-block;background:var(--gris);border-radius:999px;padding:2px 8px;font-size:11px;font-weight:600}
@@ -178,12 +183,13 @@
   .btn-full-cerrar{position:absolute;top:-48px;right:0;background:#fff;color:var(--carbon);border:none;border-radius:999px;padding:8px 18px;font-weight:700;font-size:14px}
   .full small{color:#cbd5e0;margin-top:10px;font-size:12px}
 
-  .fav-item{display:grid;grid-template-columns:70px 1fr auto;gap:12px;align-items:center;padding:12px 4px;border-bottom:1px solid var(--gris)}
-  .fav-thumb{aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--gris)}
-  .fav-thumb img{width:100%;height:100%;object-fit:cover}
-  .fav-details{display:grid;gap:2px;font-size:13px}
-  .fav-details select{padding:6px 10px;border-radius:8px;border:1.5px solid var(--borde);font-size:13px;background:#fff;max-width:180px}
-  .fav-remove{background:transparent;border:none;font-size:18px;padding:8px;border-radius:50%}
+  .cart-item{display:grid;grid-template-columns:70px 1fr auto;gap:12px;align-items:center;padding:12px 4px;border-bottom:1px solid var(--gris)}
+  .cart-thumb{aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--gris)}
+  .cart-thumb img{width:100%;height:100%;object-fit:cover}
+  .cart-details{display:grid;gap:2px;font-size:13px}
+  .cart-details select{padding:6px 10px;border-radius:8px;border:1.5px solid var(--borde);font-size:13px;background:#fff;max-width:180px}
+  .cart-remove{background:transparent;border:none;font-size:18px;padding:8px;border-radius:50%}
+  .cart-details select.falta{border-color:var(--rojo);box-shadow:0 0 0 3px rgba(229,62,62,.18)}
   .resumen{background:var(--gris);border-radius:14px;padding:16px;margin-top:14px}
   .resumen .pago-row{font-size:14px}
 
@@ -229,6 +235,10 @@
   .adm-badges .b-warn{background:#dd6b20}
   .adm-badges .b-off{background:var(--rojo)}
   .adm-badges .b-new{background:var(--turquesa);color:var(--carbon)}
+  .adm-badges button.b-new{border:0;font:inherit;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;cursor:pointer}
+  .adm-badges button.b-new:hover{background:#fff}
+  .adm-check input:disabled{opacity:.5}
+  .adm-check:has(input:disabled){cursor:default;color:var(--texto2)}
   .adm-badges .b-edit{background:#3182ce}
   .adm-body{display:grid;gap:10px;align-content:start}
   .adm-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
@@ -287,6 +297,8 @@
   .caja h3{font-size:15px}
   .caja input{width:100%;min-height:42px;padding:8px 10px;border-radius:10px;border:1.5px solid var(--borde);font-size:15px;background:#fff}
   .caja p{margin:0;font-size:13px;color:var(--texto2)}
+  .caja .adm-check{margin-top:0;font-size:15px}
+  .caja .adm-check input{width:22px;height:22px;min-height:0;padding:0;flex:none}
   .presets{display:flex;gap:6px;flex-wrap:wrap}
 
   @media (min-width:640px){
@@ -321,8 +333,8 @@
       <span class="logo-text">shoetam</span>
     </a>
     <div class="header-actions">
-      <button class="btn btn-ghost btn-sm btn-fav-badge" id="btnOpenFavs" aria-label="Ver mi lista">
-        ❤️ <span class="hide-mobile">Mi </span>Lista <span class="badge-cnt" id="favCount" hidden>0</span>
+      <button class="btn btn-ghost btn-sm btn-cart-badge" id="btnCarrito" aria-label="Ver mi carrito de compras">
+        🛒 <span class="hide-mobile">Mi </span>Carrito <span class="badge-cnt" id="carritoCount" hidden>0</span>
       </button>
       <a class="btn btn-primary btn-sm" id="btnEscribinos" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
         <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#1F2933" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
@@ -361,7 +373,7 @@
   <section class="steps" aria-labelledby="h-steps">
     <h2 id="h-steps">Cómo pedir en 3 pasos</h2>
     <ol>
-      <li><span class="step-n">1</span><div><strong>Elegí tu modelo</strong><small>Mirá el catálogo, guardá tus favoritos o tocá el que te guste.</small></div></li>
+      <li><span class="step-n">1</span><div><strong>Elegí tu modelo</strong><small>Mirá el catálogo, agregá tus pares al carrito o tocá el que te guste.</small></div></li>
       <li><span class="step-n">2</span><div><strong>Apartá tu pedido</strong><small>Confirmamos disponibilidad y apartás con solo <span class="js-adelanto">₡10.000</span> por par.</small></div></li>
       <li><span class="step-n">3</span><div><strong>Cancelás al recibir</strong><small>Cancelás el saldo al retirar en Clottam, en la entrega en Cartago/San José o antes del despacho por Correos.</small></div></li>
     </ol>
@@ -450,7 +462,7 @@
         <select id="mTalla"></select>
       </div>
       <div class="acciones-detalle">
-        <button class="btn btn-ghost btn-sm" id="mFav">🤍 Guardar</button>
+        <button class="btn btn-ghost btn-sm" id="mCarrito">🛒 Agregar al carrito</button>
         <button class="btn btn-ghost btn-sm" id="mCompartir">🔗 Compartir</button>
         <a class="btn btn-wa" id="mPedir" target="_blank" rel="noopener">Pedir por WhatsApp</a>
       </div>
@@ -458,26 +470,26 @@
   </div>
 </div>
 
-<!-- MI LISTA -->
-<div class="modal" id="modalFavs" role="dialog" aria-modal="true" aria-labelledby="favTitle">
+<!-- MI CARRITO -->
+<div class="modal" id="modalCarrito" role="dialog" aria-modal="true" aria-labelledby="carritoTitulo">
   <div class="sheet">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:10px;border-bottom:1.5px solid var(--gris);gap:8px">
-      <h3 id="favTitle" style="font-size:18px">❤️ Mi lista</h3>
+      <h3 id="carritoTitulo" style="font-size:18px">🛒 Mi carrito</h3>
       <div style="display:flex;gap:8px;align-items:center">
-        <button class="btn btn-outline btn-sm" id="btnVaciarFavs" style="color:var(--rojo)" hidden>Vaciar</button>
-        <button class="btn btn-ghost btn-sm" data-cerrar="modalFavs" aria-label="Cerrar">✕</button>
+        <button class="btn btn-outline btn-sm" id="btnVaciarCarrito" style="color:var(--rojo)" hidden>Vaciar</button>
+        <button class="btn btn-ghost btn-sm" data-cerrar="modalCarrito" aria-label="Cerrar">✕</button>
       </div>
     </div>
-    <div id="favLista"></div>
-    <div class="resumen" id="favResumen" hidden>
-      <div class="pago-row"><span>Total de los modelos:</span><strong id="favTotal">₡0</strong></div>
-      <div class="pago-row"><span>Adelanto para apartar:</span><strong id="favAdelanto">₡0</strong></div>
-      <div class="pago-row total"><span>Cancelás al recibir:</span><strong id="favSaldo" style="color:#1d7f79">₡0</strong></div>
-      <a class="btn btn-wa" id="btnEnviarLista" target="_blank" rel="noopener" style="margin-top:12px">📲 Enviar mi lista por WhatsApp</a>
+    <div id="carritoLista"></div>
+    <div class="resumen" id="carritoResumen" hidden>
+      <div class="pago-row"><span>Total de los pares:</span><strong id="carritoTotal">₡0</strong></div>
+      <div class="pago-row"><span>Adelanto para apartar:</span><strong id="carritoAdelanto">₡0</strong></div>
+      <div class="pago-row total"><span>Cancelás al recibir:</span><strong id="carritoSaldo" style="color:#1d7f79">₡0</strong></div>
+      <a class="btn btn-wa" id="btnPedirCarrito" target="_blank" rel="noopener" style="margin-top:12px">📲 Pedir mi carrito por WhatsApp</a>
     </div>
-    <div id="favVacio" style="text-align:center;padding:36px 16px;color:var(--texto2)">
-      <p style="margin:0 0 10px">Tu lista está vacía.</p>
-      <small>Tocá el corazón ❤️ en cualquier par para guardarlo y consultar por varios a la vez.</small>
+    <div id="carritoVacio" style="text-align:center;padding:36px 16px;color:var(--texto2)">
+      <p style="margin:0 0 10px">Tu carrito está vacío.</p>
+      <small>Tocá <b>🛒 Agregar al carrito</b> en cualquier par para pedir varios a la vez.</small>
     </div>
   </div>
 </div>
@@ -516,7 +528,7 @@
       <div class="adm-tabs" role="tablist">
         <button class="adm-tab" role="tab" data-tab="tabModelos" aria-selected="true">👟 Modelos</button>
         <button class="adm-tab" role="tab" data-tab="tabPrecios" aria-selected="false">💲 Precios por letra</button>
-        <button class="adm-tab" role="tab" data-tab="tabAjustes" aria-selected="false">🔧 Carrusel y seguridad</button>
+        <button class="adm-tab" role="tab" data-tab="tabAjustes" aria-selected="false">🔧 Ajustes</button>
       </div>
     </div>
 
@@ -563,6 +575,7 @@
             <button class="btn btn-ghost btn-sm" data-lote="Deportiva">Deportiva</button>
             <button class="btn btn-ghost btn-sm" data-lote="ocultar">🚫 Ocultar</button>
             <button class="btn btn-ghost btn-sm" data-lote="mostrar">👁️ Mostrar</button>
+            <button class="btn btn-ghost btn-sm" data-lote="sinnuevo" id="loteSinNuevo">✨ Quitar "Nuevo"</button>
           </div>
         </div>
 
@@ -579,6 +592,13 @@
 
       <!-- AJUSTES -->
       <div class="adm-pane" id="tabAjustes" hidden>
+        <div class="caja">
+          <h3>✨ Etiqueta "Nuevo"</h3>
+          <label class="adm-check"><input type="checkbox" id="admMostrarNuevo"> Mostrar "✨ Nuevo" en los modelos que llegaron en los últimos 7 días</label>
+          <p id="admNuevoInfo"></p>
+          <p>Como el proveedor cambia los nombres de todas las fotos cada semana, al actualizar con la carpeta nueva <b>todos</b> los modelos quedan como nuevos. Apagala para que ningún modelo diga "Nuevo". Para destacar solo algunos, poneles la insignia <b>✨ Nuevo Ingreso</b> (no depende de este interruptor). También podés quitarla de un modelo tocando su etiqueta ✨ Nuevo en el panel, o de varios con "Elegir" → ✨ Quitar "Nuevo".</p>
+          <div><button class="btn btn-primary btn-sm" id="btnGuardarNuevo">💾 Guardar</button></div>
+        </div>
         <div class="caja">
           <h3>🎯 Carrusel de portada</h3>
           <div class="presets">
@@ -650,7 +670,7 @@
     TALLAS_ADULTO: ["35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"],
     TALLAS_NINO: ["20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35"],
     CLAVE_CACHE: "shoetam_catalogo_v2",
-    CLAVE_FAVS: "shoetam_favoritos_v2",
+    CLAVE_CARRITO: "shoetam_favoritos_v2", // mismo nombre que la "lista" de antes: así nadie pierde lo que ya tenía guardado
     CLAVE_SESION: "shoetam_sesion_v2"
   };
   // Para probar en tu computadora: abrí la página con ?dev desde localhost
@@ -667,7 +687,6 @@
     set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
     del(k) { try { localStorage.removeItem(k); } catch (e) {} }
   };
-  const SVG_CORAZON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>';
 
   let toastTimer = null;
   function toast(msg, ms) {
@@ -774,7 +793,7 @@
   let listaActual = [];
   let mostrados = 0;
   let detalle = null;
-  let favoritos = [];
+  let carrito = [];
   let firmaDatos = "";
 
   function prepararProducto(p) {
@@ -835,8 +854,8 @@
       $("carruselSub").textContent = data.carrusel.subtitulo || "";
       $("carruselSub").hidden = !data.carrusel.subtitulo;
     }
-    favoritos = favoritos.filter(f => porId[f.id]);
-    guardarFavoritos();
+    carrito = carrito.filter(f => porId[f.id]);
+    guardarCarrito();
     construirMarcas();
     llenarFiltros();
     renderCarrusel();
@@ -900,12 +919,11 @@
     return "";
   }
 
-  const esFavorito = id => favoritos.some(f => f.id === id);
+  const enCarrito = id => carrito.some(f => f.id === id);
 
   function tarjetaHTML(p) {
-    const fav = esFavorito(p.id);
+    const item = enCarrito(p.id);
     return `<article class="card" data-id="${esc(p.id)}">
-      <button class="btn-card-fav" data-fav="${esc(p.id)}" aria-pressed="${fav}" aria-label="Guardar en mi lista">${SVG_CORAZON}</button>
       <div class="card-open" role="button" tabindex="0" data-abrir="${esc(p.id)}" aria-label="Ver ${esc(p.marca)} ${esc(p.codigo)}">
         <div class="photo"><img loading="lazy" decoding="async" src="${esc(urlFoto(p, 400))}" data-alt="${esc(urlFotoRespaldo(p, 400))}" alt="${esc(p.marca)} ${esc(p.codigo)}">${badgeHTML(p)}</div>
         <div class="card-body">
@@ -916,6 +934,7 @@
           <span class="abono-tag">Apartás con ${fmt(CONFIG.MONTO_ADELANTO)} · Saldo al recibir: ${fmt(p.saldo)}</span>
         </div>
       </div>
+      <button type="button" class="btn-card-cart" data-carrito="${esc(p.id)}" aria-pressed="${item}" aria-label="Agregar ${esc(p.marca)} ${esc(p.codigo)} al carrito"><span class="agregar">🛒 Agregar<span class="hide-mobile"> al carrito</span></span><span class="en">✓ En el carrito</span></button>
     </article>`;
   }
 
@@ -940,8 +959,8 @@
 
   // Clics en tarjetas (catálogo y carrusel)
   function manejarClicTarjeta(e) {
-    const f = e.target.closest("[data-fav]");
-    if (f) { e.stopPropagation(); alternarFavorito(f.dataset.fav); return; }
+    const c = e.target.closest("[data-carrito]");
+    if (c) { e.stopPropagation(); alternarCarrito(c.dataset.carrito); return; }
     const a = e.target.closest("[data-abrir]");
     if (a) abrirDetalle(a.dataset.abrir);
   }
@@ -999,13 +1018,13 @@
       $("mPrecio").textContent = fmt(p.precio) + (p.letra ? " (Letra " + p.letra + ")" : "");
     }
     $("mSaldo").textContent = fmt(p.saldo);
-    const fav = favoritos.find(f => f.id === p.id);
+    const item = carrito.find(f => f.id === p.id);
     $("mTalla").innerHTML = p.tallas.length
       ? `<option value="">Elegí tu talla</option>` + p.tallas.map(t => `<option value="${esc(t)}">Talla ${esc(t)}</option>`).join("")
       : `<option value="">Por confirmar</option>`;
-    if (fav && fav.talla) $("mTalla").value = fav.talla;
+    if (item && item.talla) $("mTalla").value = item.talla;
     $("mTalla").classList.remove("falta");
-    pintarBotonFav();
+    pintarBotonCarrito();
     abrirModal("modal");
     $("modal").querySelector(".sheet").scrollTop = 0;
     if (location.hash !== "#p=" + encodeURIComponent(p.id)) history.replaceState(null, "", "#p=" + encodeURIComponent(p.id));
@@ -1015,17 +1034,18 @@
     if (location.hash.indexOf("#p=") === 0) history.replaceState(null, "", location.pathname + location.search);
   }
 
-  function pintarBotonFav() {
-    const enLista = detalle && esFavorito(detalle.id);
-    $("mFav").textContent = enLista ? "❤️ En tu lista" : "🤍 Guardar";
-    $("mFav").className = enLista ? "btn btn-coral btn-sm" : "btn btn-ghost btn-sm";
+  function pintarBotonCarrito() {
+    const dentro = detalle && enCarrito(detalle.id);
+    $("mCarrito").textContent = dentro ? "✓ En el carrito" : "🛒 Agregar al carrito";
+    $("mCarrito").className = dentro ? "btn btn-coral btn-sm" : "btn btn-ghost btn-sm";
+    $("mCarrito").title = dentro ? "Tocá para quitarlo del carrito" : "";
   }
 
-  $("mFav").addEventListener("click", () => { if (detalle) alternarFavorito(detalle.id, $("mTalla").value); });
+  $("mCarrito").addEventListener("click", () => { if (detalle) alternarCarrito(detalle.id, $("mTalla").value); });
   $("mTalla").addEventListener("change", () => {
     $("mTalla").classList.remove("falta");
-    const f = detalle && favoritos.find(x => x.id === detalle.id);
-    if (f) { f.talla = $("mTalla").value; guardarFavoritos(); }
+    const f = detalle && carrito.find(x => x.id === detalle.id);
+    if (f) { f.talla = $("mTalla").value; guardarCarrito(); }
   });
   $("mFoto").addEventListener("click", () => detalle && abrirFoto(urlFoto(detalle, 1600), urlFotoRespaldo(detalle, 1600), $("mFoto").alt));
 
@@ -1072,65 +1092,80 @@
   $("btnFullCerrar").addEventListener("click", cerrarFoto);
   $("full").addEventListener("click", e => { if (e.target.id === "full") cerrarFoto(); });
 
-  // ── Mi lista ──
-  function cargarFavoritos() {
-    try { const f = JSON.parse(almacen.get(CONFIG.CLAVE_FAVS) || "[]"); favoritos = Array.isArray(f) ? f.filter(x => x && x.id).map(x => ({ id: String(x.id), talla: String(x.talla || "") })) : []; }
-    catch (e) { favoritos = []; }
-    pintarContadorFavs();
+  // ── Mi carrito (se guarda en el navegador de cada cliente) ──
+  function cargarCarrito() {
+    try { const f = JSON.parse(almacen.get(CONFIG.CLAVE_CARRITO) || "[]"); carrito = Array.isArray(f) ? f.filter(x => x && x.id).map(x => ({ id: String(x.id), talla: String(x.talla || "") })) : []; }
+    catch (e) { carrito = []; }
+    pintarContadorCarrito();
   }
-  function guardarFavoritos() { almacen.set(CONFIG.CLAVE_FAVS, JSON.stringify(favoritos)); pintarContadorFavs(); }
-  function pintarContadorFavs() { const b = $("favCount"); b.textContent = favoritos.length; b.hidden = !favoritos.length; }
-
-  function alternarFavorito(id, talla) {
-    if (esFavorito(id)) { favoritos = favoritos.filter(f => f.id !== id); toast("Quitado de tu lista"); }
-    else { favoritos.push({ id: id, talla: talla || "" }); toast("❤️ Guardado en tu lista"); }
-    guardarFavoritos();
-    const activo = esFavorito(id);
-    document.querySelectorAll(`[data-fav="${CSS.escape(id)}"]`).forEach(b => b.setAttribute("aria-pressed", activo));
-    pintarBotonFav();
-    if ($("modalFavs").classList.contains("open")) renderFavoritos();
+  function guardarCarrito() { almacen.set(CONFIG.CLAVE_CARRITO, JSON.stringify(carrito)); pintarContadorCarrito(); }
+  function pintarContadorCarrito() { const b = $("carritoCount"); b.textContent = carrito.length; b.hidden = !carrito.length; }
+  function animarCarrito() {
+    const b = $("btnCarrito");
+    b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop");
   }
 
-  function renderFavoritos() {
-    const items = favoritos.map(f => ({ f: f, p: porId[f.id] })).filter(x => x.p);
-    $("favVacio").hidden = items.length > 0;
-    $("favResumen").hidden = !items.length;
-    $("btnVaciarFavs").hidden = !items.length;
-    $("favLista").innerHTML = items.map(({ f, p }) => `
-      <div class="fav-item" data-id="${esc(p.id)}">
-        <div class="fav-thumb"><img loading="lazy" src="${esc(urlFoto(p, 200))}" data-alt="${esc(urlFotoRespaldo(p, 200))}" alt="${esc(p.marca)}"></div>
-        <div class="fav-details">
+  function alternarCarrito(id, talla) {
+    if (enCarrito(id)) { carrito = carrito.filter(f => f.id !== id); toast("Quitado del carrito"); }
+    else { carrito.push({ id: id, talla: talla || "" }); toast("🛒 Agregado al carrito"); animarCarrito(); }
+    guardarCarrito();
+    const activo = enCarrito(id);
+    document.querySelectorAll(`[data-carrito="${CSS.escape(id)}"]`).forEach(b => b.setAttribute("aria-pressed", activo));
+    pintarBotonCarrito();
+    if ($("modalCarrito").classList.contains("open")) renderCarrito();
+  }
+
+  function renderCarrito() {
+    const items = carrito.map(f => ({ f: f, p: porId[f.id] })).filter(x => x.p);
+    $("carritoVacio").hidden = items.length > 0;
+    $("carritoResumen").hidden = !items.length;
+    $("btnVaciarCarrito").hidden = !items.length;
+    $("carritoLista").innerHTML = items.map(({ f, p }) => `
+      <div class="cart-item" data-id="${esc(p.id)}">
+        <div class="cart-thumb"><img loading="lazy" src="${esc(urlFoto(p, 200))}" data-alt="${esc(urlFotoRespaldo(p, 200))}" alt="${esc(p.marca)}"></div>
+        <div class="cart-details">
           <strong>${esc(p.marca)} · ${esc(p.codigo)}</strong>
           <span style="font-weight:700;color:${p.esOferta ? "var(--rojo)" : "#1d7f79"}">${fmt(p.precio)}</span>
-          ${p.tallas.length ? `<select class="js-fav-talla" aria-label="Talla"><option value="">Elegir talla</option>${p.tallas.map(t => `<option value="${esc(t)}" ${f.talla === t ? "selected" : ""}>Talla ${esc(t)}</option>`).join("")}</select>` : `<small>Talla por confirmar</small>`}
+          ${p.tallas.length ? `<select class="js-cart-talla" aria-label="Talla"><option value="">Elegir talla</option>${p.tallas.map(t => `<option value="${esc(t)}" ${f.talla === t ? "selected" : ""}>Talla ${esc(t)}</option>`).join("")}</select>` : `<small>Talla por confirmar</small>`}
         </div>
-        <button class="fav-remove js-fav-quitar" aria-label="Quitar de mi lista">🗑️</button>
+        <button class="cart-remove js-cart-quitar" aria-label="Quitar del carrito">🗑️</button>
       </div>`).join("");
     const total = items.reduce((s, x) => s + x.p.precio, 0);
     const adelanto = items.length * CONFIG.MONTO_ADELANTO;
-    $("favTotal").textContent = fmt(total);
-    $("favAdelanto").textContent = fmt(adelanto);
-    $("favSaldo").textContent = fmt(items.reduce((s, x) => s + x.p.saldo, 0));
+    $("carritoTotal").textContent = fmt(total);
+    $("carritoAdelanto").textContent = fmt(adelanto);
+    $("carritoSaldo").textContent = fmt(items.reduce((s, x) => s + x.p.saldo, 0));
   }
 
-  $("favLista").addEventListener("change", e => {
-    if (!e.target.matches(".js-fav-talla")) return;
-    const f = favoritos.find(x => x.id === e.target.closest(".fav-item").dataset.id);
-    if (f) { f.talla = e.target.value; guardarFavoritos(); }
+  $("carritoLista").addEventListener("change", e => {
+    if (!e.target.matches(".js-cart-talla")) return;
+    e.target.classList.remove("falta");
+    const f = carrito.find(x => x.id === e.target.closest(".cart-item").dataset.id);
+    if (f) { f.talla = e.target.value; guardarCarrito(); }
   });
-  $("favLista").addEventListener("click", e => {
-    if (e.target.closest(".js-fav-quitar")) alternarFavorito(e.target.closest(".fav-item").dataset.id);
+  $("carritoLista").addEventListener("click", e => {
+    if (e.target.closest(".js-cart-quitar")) alternarCarrito(e.target.closest(".cart-item").dataset.id);
   });
-  $("btnVaciarFavs").addEventListener("click", () => {
-    if (!confirm("¿Vaciar toda tu lista?")) return;
-    favoritos = [];
-    guardarFavoritos();
-    renderFavoritos();
-    document.querySelectorAll("[data-fav]").forEach(b => b.setAttribute("aria-pressed", "false"));
+  $("btnVaciarCarrito").addEventListener("click", () => {
+    if (!confirm("¿Vaciar todo tu carrito?")) return;
+    carrito = [];
+    guardarCarrito();
+    renderCarrito();
+    document.querySelectorAll("[data-carrito]").forEach(b => b.setAttribute("aria-pressed", "false"));
   });
-  $("btnEnviarLista").addEventListener("click", e => {
-    const items = favoritos.map(f => ({ f: f, p: porId[f.id] })).filter(x => x.p);
-    let msg = "¡Hola Shoetam! Me interesan estos pares de mi lista:\n";
+  $("btnPedirCarrito").addEventListener("click", e => {
+    const items = carrito.map(f => ({ f: f, p: porId[f.id] })).filter(x => x.p);
+    // Igual que al pedir un solo par: cada uno necesita su talla
+    const sinTalla = items.filter(({ f, p }) => p.tallas.length && !f.talla);
+    if (sinTalla.length) {
+      e.preventDefault();
+      sinTalla.forEach(({ p }) => { const sel = $("carritoLista").querySelector(`.cart-item[data-id="${CSS.escape(p.id)}"] .js-cart-talla`); if (sel) sel.classList.add("falta"); });
+      const primero = $("carritoLista").querySelector(".js-cart-talla.falta");
+      if (primero) { primero.scrollIntoView({ block: "center", behavior: "smooth" }); primero.focus({ preventScroll: true }); }
+      toast(sinTalla.length === 1 ? "👟 Elegí la talla del par marcado" : `👟 Elegí la talla de los ${sinTalla.length} pares marcados`);
+      return;
+    }
+    let msg = "¡Hola Shoetam! Quiero pedir estos pares de mi carrito:\n";
     items.forEach(({ f, p }, i) => {
       msg += `\n${i + 1}) ${p.marca} · ${p.codigo} · Talla ${f.talla || "por confirmar"} · ${fmt(p.precio)}\n   🔗 ${linkProducto(p)}`;
     });
@@ -1140,7 +1175,7 @@
     msg += `\n\n¿Cuáles tienen disponibles?`;
     e.currentTarget.href = waLink(msg);
   });
-  $("btnOpenFavs").addEventListener("click", () => { renderFavoritos(); abrirModal("modalFavs"); });
+  $("btnCarrito").addEventListener("click", () => { renderCarrito(); abrirModal("modalCarrito"); });
 
   // ── Cuenta regresiva al corte (hora de Costa Rica, UTC-6, sin horario de verano) ──
   function iniciarTemporizador() {
@@ -1162,7 +1197,7 @@
   // ═══════════════ PANEL DE ADMINISTRACIÓN ═══════════════
   const admin = {
     token: almacen.get(CONFIG.CLAVE_SESION) || "",
-    cargado: false, productos: [], porId: {}, precios: {}, letras: [], carrusel: {},
+    cargado: false, productos: [], porId: {}, precios: {}, letras: [], carrusel: {}, mostrarNuevo: true, nuevoSoportado: false,
     cambios: {}, seleccion: new Set(), lista: [], mostrados: 0
   };
   const hayCambios = () => Object.keys(admin.cambios).length;
@@ -1264,6 +1299,9 @@
     admin.precios = r.precios || {};
     admin.letras = Object.keys(admin.precios).sort();
     admin.carrusel = r.carrusel || {};
+    // Los servidores viejos (sin el interruptor) no mandan "mostrarNuevo"
+    admin.nuevoSoportado = !!(r.ajustes && "mostrarNuevo" in r.ajustes);
+    admin.mostrarNuevo = !admin.nuevoSoportado || r.ajustes.mostrarNuevo !== false;
     admin.cargado = true;
     const marcas = [...new Set(admin.productos.map(p => p.marca))].sort((a, b) => a.localeCompare(b, "es"));
     $("admMarca").innerHTML = `<option value="">Todas las marcas</option>` + marcas.map(m => `<option value="${esc(m)}">${esc(m)}</option>`).join("");
@@ -1407,7 +1445,7 @@
           </div>
         </div>
         <details class="adm-mas">
-          <summary>Oferta, insignia, carrusel y ocultar</summary>
+          <summary>Oferta, insignia, "Nuevo", carrusel y ocultar</summary>
           <div class="adm-fila2">
             <div class="adm-sec">
               <label class="adm-lbl">Oferta <small>(10% o un precio como 24000)</small></label>
@@ -1419,6 +1457,7 @@
               <select class="adm-input js-insignia"><option value="">Ninguna</option><option value="Nuevo Ingreso">✨ Nuevo Ingreso</option><option value="Más Vendido">⭐ Más Vendido</option></select>
             </div>
           </div>
+          <label class="adm-check"><input type="checkbox" class="js-nuevo"> ✨ Etiqueta "Nuevo" <small class="js-nuevo-nota"></small></label>
           <label class="adm-check"><input type="checkbox" class="js-carrusel"> ⭐ Mostrar en el carrusel</label>
           <label class="adm-check"><input type="checkbox" class="js-oculto"> 🚫 Ocultar de la web</label>
         </details>
@@ -1460,6 +1499,11 @@
     card.querySelectorAll(".js-estilo").forEach(b => b.setAttribute("aria-pressed", b.dataset.e === estilo));
     card.querySelector(".js-color-sel").value = CONFIG.COLORES.includes(color) ? color : "";
     card.querySelector(".js-insignia").value = val(p, "insignia") || "";
+    const nuevo = !!val(p, "nuevo"), cbNuevo = card.querySelector(".js-nuevo");
+    cbNuevo.checked = nuevo && admin.mostrarNuevo;
+    cbNuevo.disabled = !admin.nuevoSoportado || !admin.mostrarNuevo;
+    card.querySelector(".js-nuevo-nota").textContent = !admin.nuevoSoportado ? "(actualizá Código.gs para usar esto)"
+      : !admin.mostrarNuevo ? "(apagada para toda la página en 🔧 Ajustes)" : nuevo ? "(se quita sola a los 7 días)" : "(la muestra 7 días desde hoy)";
     card.querySelector(".js-carrusel").checked = !!val(p, "carrusel");
     card.querySelector(".js-oculto").checked = oculto;
     card.querySelector(".js-sel").checked = admin.seleccion.has(p.id);
@@ -1475,7 +1519,9 @@
     if (!letra) b.push('<span class="b-warn">Sin letra · no sale en la web</span>');
     if (!tallas.length) b.push('<span class="b-warn">Sin tallas</span>');
     if (oculto) b.push('<span class="b-off">🚫 Oculto</span>');
-    if (p.nuevo) b.push('<span class="b-new">✨ Nuevo</span>');
+    if (nuevo && admin.mostrarNuevo) {
+      b.push(admin.nuevoSoportado ? '<button type="button" class="b-new js-quitar-nuevo" title="Quitar la etiqueta Nuevo de este modelo">✨ Nuevo ✕</button>' : '<span class="b-new">✨ Nuevo</span>');
+    }
     if (esAutomatica(p)) b.push('<span>🤖 Letra leída de la foto</span>');
     if (editado) b.push('<span class="b-edit">✏️ Sin guardar</span>');
     card.querySelector(".adm-badges").innerHTML = b.join("");
@@ -1490,6 +1536,7 @@
     const letra = e.target.closest(".js-letra");
     if (letra) { setCambio(id, "letra", letra.dataset.l); return; }
     if (e.target.closest(".js-usar-sug")) { usarSugerencia(p); return; }
+    if (e.target.closest(".js-quitar-nuevo")) { setCambio(id, "nuevo", false); toast('✨ "Nuevo" quitado. Tocá Guardar para publicarlo.'); return; }
     const pill = e.target.closest(".js-pill");
     if (pill) {
       const actuales = new Set(val(p, "tallas"));
@@ -1517,6 +1564,7 @@
     if (e.target.matches(".js-color-sel") && e.target.value) { setCambio(id, "color", e.target.value); card.querySelector(".js-color").value = e.target.value; }
     else if (e.target.matches(".js-insignia")) setCambio(id, "insignia", e.target.value);
     else if (e.target.matches(".js-carrusel")) setCambio(id, "carrusel", e.target.checked);
+    else if (e.target.matches(".js-nuevo")) setCambio(id, "nuevo", e.target.checked);
     else if (e.target.matches(".js-oculto")) setCambio(id, "oculto", e.target.checked);
     else if (e.target.matches(".js-sel")) { if (e.target.checked) admin.seleccion.add(id); else admin.seleccion.delete(id); pintarLote(); }
   });
@@ -1712,6 +1760,10 @@
     const a = b.dataset.lote;
     if (a === "ocultar") aplicarLote("oculto", true, "{n} modelos ocultos");
     else if (a === "mostrar") aplicarLote("oculto", false, "{n} modelos visibles");
+    else if (a === "sinnuevo") {
+      if (!admin.nuevoSoportado) { toast("Primero actualizá Código.gs en Apps Script (Nueva versión)", 5000); return; }
+      aplicarLote("nuevo", false, '✨ "Nuevo" quitado de {n} modelos. Tocá Guardar.');
+    }
     else aplicarLote("estilo", a, `Estilo ${a} para {n} modelos`);
   });
 
@@ -1757,6 +1809,7 @@
   document.querySelectorAll(".adm-tab").forEach(tab => tab.addEventListener("click", () => {
     document.querySelectorAll(".adm-tab").forEach(t => t.setAttribute("aria-selected", t === tab));
     document.querySelectorAll(".adm-pane").forEach(p => { p.hidden = p.id !== tab.dataset.tab; });
+    if (tab.dataset.tab === "tabAjustes" && admin.cargado) pintarInfoNuevo();
     $("admScroll").scrollTop = 0;
   }));
 
@@ -1782,11 +1835,36 @@
     finally { btn.disabled = false; }
   });
 
-  // ── Carrusel y seguridad ──
+  // ── Ajustes: etiqueta Nuevo, carrusel y seguridad ──
   function renderAjustes() {
     $("admCarTitulo").value = admin.carrusel.titulo || "";
     $("admCarSub").value = admin.carrusel.subtitulo || "";
+    $("admMostrarNuevo").checked = admin.mostrarNuevo;
+    $("admMostrarNuevo").disabled = $("btnGuardarNuevo").disabled = !admin.nuevoSoportado;
+    pintarInfoNuevo();
   }
+  function pintarInfoNuevo() {
+    const conEtiqueta = admin.productos.filter(p => p.nuevo).length;
+    $("admNuevoInfo").innerHTML = !admin.nuevoSoportado
+      ? "⚠️ Para usar esto, primero pegá el <b>Código.gs</b> nuevo en Apps Script y publicá una <b>Nueva versión</b>."
+      : !admin.mostrarNuevo ? "Apagada: ahora mismo ningún modelo dice \"Nuevo\" en la página."
+      : `Encendida: <b>${conEtiqueta}</b> de ${admin.productos.length} modelos dicen "Nuevo" (llegaron en los últimos 7 días).`;
+  }
+  $("btnGuardarNuevo").addEventListener("click", async () => {
+    const mostrar = $("admMostrarNuevo").checked;
+    const btn = $("btnGuardarNuevo");
+    btn.disabled = true;
+    try {
+      const r = await apiPost({ accion: "guardar", token: admin.token, ajustes: { mostrarNuevo: mostrar } });
+      if (!r.ok) { if (r.codigo !== "SESION") toast("⚠️ " + r.error); return; }
+      admin.mostrarNuevo = mostrar;
+      renderAjustes();
+      lista.querySelectorAll(".adm-card").forEach(c => refrescarTarjeta(c, false));
+      toast(mostrar ? '✨ Etiqueta "Nuevo" encendida' : '✅ Listo: ningún modelo dice "Nuevo" en la página');
+      recargarPublico();
+    } catch (e) { toast("⚠️ No se pudo guardar. Revisá tu internet."); }
+    finally { btn.disabled = !admin.nuevoSoportado; }
+  });
   document.querySelectorAll(".js-preset").forEach(b => b.addEventListener("click", () => { $("admCarTitulo").value = b.dataset.t; $("admCarSub").value = b.dataset.s; }));
   $("btnGuardarCarrusel").addEventListener("click", async () => {
     const carrusel = { titulo: $("admCarTitulo").value.trim(), subtitulo: $("admCarSub").value.trim() };
@@ -1837,7 +1915,7 @@
 
   async function iniciar() {
     iniciarTemporizador();
-    cargarFavoritos();
+    cargarCarrito();
     actualizarBarraAdmin();
     const cache = leerCache();
     if (cache) { aplicarDatos(cache); revisarHash(); }
